@@ -57,7 +57,7 @@ Wants=docker.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/openclaw serve --host 127.0.0.1 --port 18789
+ExecStart=/usr/bin/openclaw gateway --port 18789 --bind loopback
 Restart=on-failure
 RestartSec=5
 Environment=HOME=/root
