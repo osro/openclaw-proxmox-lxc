@@ -32,7 +32,8 @@ msg_ok "Installed system dependencies"
 msg_info "Installing Node.js 22"
 curl -fsSL https://deb.nodesource.com/setup_22.x | $STD bash -
 $STD apt-get install -y nodejs
-msg_ok "Installed Node.js $(node -v)"
+$STD npm install -g npm@latest
+msg_ok "Installed Node.js $(node -v) with npm $(npm -v)"
 
 DOCKER_LATEST_VERSION=$(get_latest_github_release "moby/moby")
 msg_info "Installing Docker $DOCKER_LATEST_VERSION"
@@ -50,8 +51,7 @@ msg_ok "Installed Docker $DOCKER_LATEST_VERSION"
 
 msg_info "Installing OpenClaw"
 $STD npm install -g node-gyp @mapbox/node-pre-gyp
-$STD npm install -g openclaw@latest --ignore-scripts
-$STD npm rebuild -g
+npm_config_build_from_source=true $STD npm install -g openclaw@latest
 msg_ok "Installed OpenClaw $(openclaw --version 2>/dev/null || echo '')"
 
 msg_info "Configuring OpenClaw"
