@@ -20,7 +20,9 @@ $STD apt-get install -y \
   gnupg \
   ca-certificates \
   openssl \
-  nginx
+  nginx \
+  build-essential \
+  python3
 msg_ok "Installed system dependencies"
 
 msg_info "Installing Node.js 22"
