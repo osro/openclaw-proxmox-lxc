@@ -22,7 +22,11 @@ $STD apt-get install -y \
   openssl \
   nginx \
   build-essential \
-  python3
+  python3 \
+  python3-pip \
+  g++ \
+  make \
+  libsqlite3-dev
 msg_ok "Installed system dependencies"
 
 msg_info "Installing Node.js 22"
@@ -45,8 +49,9 @@ $STD systemctl enable --now docker
 msg_ok "Installed Docker $DOCKER_LATEST_VERSION"
 
 msg_info "Installing OpenClaw"
-$STD npm install -g node-gyp
-$STD npm install -g openclaw@latest --build-from-source
+$STD npm install -g node-gyp @mapbox/node-pre-gyp
+$STD npm install -g openclaw@latest --ignore-scripts
+$STD npm rebuild -g
 msg_ok "Installed OpenClaw $(openclaw --version 2>/dev/null || echo '')"
 
 msg_info "Configuring OpenClaw"
