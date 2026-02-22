@@ -45,7 +45,8 @@ $STD systemctl enable --now docker
 msg_ok "Installed Docker $DOCKER_LATEST_VERSION"
 
 msg_info "Installing OpenClaw"
-$STD npm install -g openclaw@latest
+$STD npm install -g node-gyp
+$STD npm install -g openclaw@latest --build-from-source
 msg_ok "Installed OpenClaw $(openclaw --version 2>/dev/null || echo '')"
 
 msg_info "Configuring OpenClaw"
